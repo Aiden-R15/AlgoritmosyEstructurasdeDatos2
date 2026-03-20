@@ -12,6 +12,7 @@ void print_sep(int length) {
     printf("\n");
 
 }
+/*Imprime un separador*/
 
 void print_board(char board[3][3])
 {
@@ -27,22 +28,47 @@ void print_board(char board[3][3])
         print_sep(3);
     }
 }
+/*Imprime el tablero*/
 
 char get_winner(char board[3][3])
 {
     char winner = '-';
-    //
-    // TODO: COMPLETAR
-    //
+    
+    for (int row = 0; row < 3 && winner == '-'; ++row) {
+        if (board[row][0]==board[row][1]&&board[row][0]==board[row][2]) {
+            winner = board[row][0];
+        }
+    }
+
+    for (int column = 0; column < 3 && winner == '-'; ++column) {
+        if (board[0][column]==board[1][column]&&board[0][column]==board[2][column]) {
+            winner = board[0][column];
+        }
+    }
+
+    for (int column = 0; column < 3 && winner == '-'; ++column) {
+        if (board[0][column]==board[1][column]&&board[0][column]==board[2][column]) {
+            winner = board[0][column];
+        }
+    }
+
+    if ((board[1][1]==board[0][2]&&board[1][1]==board[2][0])||(board[1][1]==board[0][0]&&board[1][1]==board[2][2])) {
+        winner = board[1][1];
+    }
+
     return winner;
 }
 
 bool has_free_cell(char board[3][3])
 {
     bool free_cell=false;
-    //
-    // TODO: COMPLETAR
-    //
+    for (int row = 0; row < 3 && !free_cell; ++row) {
+        for (int column = 0; column < 3 && !free_cell; ++column) {
+            if ((board[row][column])=='-') {
+                free_cell = true;
+            }
+        }
+    }
     return free_cell;
 }
 
