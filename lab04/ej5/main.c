@@ -12,9 +12,25 @@ typedef Node *List;
  * @brief Construye y devuelve una lista de ejemplo de 3 elementos
  */
 List setup_example() {
-    //
-    // COMPLETAR ACÁ!
-    //
+    int i = 3;
+    List my_list;
+    Node *a_node;
+    
+    my_list = malloc(sizeof(Node));
+    a_node = my_list;
+    i = i-1;
+    
+    while (i>0) {
+        a_node->data = i*10;
+        a_node->next = malloc(sizeof(Node));
+        a_node = a_node->next;
+        i = i-1;
+    }
+    
+    a_node->data = 0;
+    a_node->next = NULL;
+    
+    return my_list;
 }
 
 /**
@@ -23,9 +39,13 @@ List setup_example() {
  * Precondicion: la lista xs no debe ser vacía
  */
 List tail_example(List xs) {
-    //
-    // COMPLETAR ACÁ!
-    //
+    Node *a_node = xs;
+    xs = xs->next;
+    free(a_node);
+    a_node = NULL;
+    
+    return xs;
+    
 }
 
 void show_list(List xs) {
