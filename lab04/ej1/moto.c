@@ -88,9 +88,28 @@ void mostrar_moto(moto_t moto) {
  *   2. Colocar una rueda nueva con la presión óptima (alojar memoria)
  */
 void reparar_moto(moto_t moto) {
-
-    
-
+bool aux;
+aux=chequear_moto(moto);
+if(aux==false){
+  if(moto->rueda_delantera->presion != PRESION_OPTIMA){
+   moto->rueda_delantera->presion = PRESION_OPTIMA;
+  }
+  if(moto->rueda_delantera->pinchada == true){
+   free (moto->rueda_delantera);
+   moto->rueda_delantera = malloc(sizeof(struct_rueda));
+   moto->rueda_delantera->presion = PRESION_OPTIMA;
+   moto->rueda_delantera->pinchada = false;
+  }
+  if(moto->rueda_trasera->presion != PRESION_OPTIMA){
+   moto->rueda_trasera->presion = PRESION_OPTIMA;
+  }
+  if(moto->rueda_trasera->pinchada == true){
+   free (moto->rueda_trasera);
+   moto->rueda_trasera = malloc(sizeof(struct_rueda));
+   moto->rueda_trasera->presion = PRESION_OPTIMA;
+   moto->rueda_trasera->pinchada = false;
+  }
+}
 }
 
 /**

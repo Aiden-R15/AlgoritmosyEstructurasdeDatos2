@@ -84,11 +84,30 @@ void mostrar_robot(robot_t robot) {
  *
  * A las partes no quemadas NO LAS REEMPLAZA, sólo les pone el aceite óptimo
  */
-void reparar_robot(robot_t robot) {
-
-    //
-    // COMPLETAR!!
-    //
+void reparar_robot(robot_t robot){
+if(robot->codo->quemado == true){
+    free(robot->codo->mano);   // liberar mano primero
+    free(robot->codo);
+    robot->codo = malloc(sizeof(struct _codo));
+    robot->codo->aceite = ACEITE_OPTIMO;
+    robot->codo->quemado = false;
+    robot->codo->mano = malloc(sizeof(struct _mano)); // inicializar mano
+    robot->codo->mano->aceite = ACEITE_OPTIMO;
+    robot->codo->mano->quemado = false;
+}
+// solo si el codo NO fue reemplazado, chequeamos la mano por separado
+    if(robot->codo->mano->aceite != ACEITE_OPTIMO){
+        robot->codo->mano->aceite = ACEITE_OPTIMO;
+    }
+     if(robot->codo->aceite != ACEITE_OPTIMO){
+        robot->codo->aceite = ACEITE_OPTIMO;
+    }
+    if(robot->codo->mano->quemado == true){
+        free(robot->codo->mano);
+        robot->codo->mano = malloc(sizeof(struct _mano));
+        robot->codo->mano->aceite = ACEITE_OPTIMO;
+        robot->codo->mano->quemado = false;
+    }
 
 }
 
