@@ -6,9 +6,10 @@
 typedef int elem;
 typedef struct _list * list;
 
-//
-// Constructors
-//
+struct _list {
+    elem data;
+    struct _list *next;
+};
 
 /**
  * @brief Creates a new empty list.
